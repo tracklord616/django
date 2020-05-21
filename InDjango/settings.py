@@ -156,7 +156,7 @@ SIMPLE_JWT = {
 
 AUTH_USER_MODEL = 'in_django_site.InDjangoUser'
 
-CELERY_BROKER_URL = 'redis://h:p6f48cc47ce16dd4f79a53b92b24f5ba9da298bbd9bad3ea31a89deb338ff8dd0@ec2-54-246-240-59.eu-west-1.compute.amazonaws.com:29639'
+CELERY_BROKER_URL = 'redis://h:p6f48cc47ce16dd4f79a53b92b24f5ba9da298bbd9bad3ea31a89deb338ff8dd0@ec2-52-31-134-132.eu-west-1.compute.amazonaws.com:17949'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
