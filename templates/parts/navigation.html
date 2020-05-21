@@ -1,0 +1,51 @@
+{% load static %}
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-success secondary-color lighten-1">
+    <a class="navbar-brand" href="{% url 'site:feed' %}"><img src="{% static 'own_img/logo.png' %}" class="rounded-circle z-depth-0" alt="navbar image" style="height: 35px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item nav-pills">
+                <a class="nav-link" href="{% url 'site:my_profile' %}">My profile</a>
+            </li>
+            <li class="nav-item nav-pills">
+                <a class="nav-link" href="{% url 'site:follows' %}">Follows</a>
+            </li>
+            <li class="nav-item nav-pills">
+                <a class="nav-link" href="{% url 'site:user_groups' %}">Groups</a>
+            </li>
+            <li class="nav-item nav-pills">
+                <a class="nav-link" href="{% url 'site:stories' %}">Stories</a>
+            </li>
+            <li class="nav-item nav-pills">
+                <a class="nav-link" href="{% url 'site:feed' %}">Feed</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item nav-pills avatar dropdown">
+                <a class="nav-link" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    {% if user.is_authenticated %}
+                        <img src="/media/{{ user.avatar }}" class="rounded-circle z-depth-0" alt="avatar image" style="height: 35px">
+                    {% else %}
+                        <img src="{% static 'own_img/anon.png' %}" class="rounded-circle z-depth-0" alt="anon image" style="height: 35px">
+                    {% endif %}
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                     aria-labelledby="navbarDropdownMenuLink-55">
+                    {% if user.is_authenticated %}
+                        <a class="dropdown-item" href="{% url 'site:my_profile' %}">My profile</a>
+                        <a class="dropdown-item" href="{% url 'site:profile_settings' %}">Settings</a>
+                        <a class="dropdown-item" href="{% url 'site:logout' %}">Logout</a>
+                    {% else %}
+                        <a class="dropdown-item" href="{% url 'site:authorization' %}">Sign In</a>
+                        <a class="dropdown-item" href="{% url 'site:registration' %}">Sign Up</a>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--Navbar -->
