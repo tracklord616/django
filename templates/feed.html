@@ -1,0 +1,187 @@
+{% load static %}
+{% load humanize %}
+{% include 'parts/header.html' %}
+{% include 'parts/navigation.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Feed</h3>
+                    {% for post in object_list %}
+                        <div>
+                            <div class="post">
+                                <div style="display: inline">
+                                    {% if post.author %}
+                                        <a href="{% url 'site:user_profile' id=post.author.id %}">
+                                            <span><img src="/media/{{ post.author.avatar }}"
+                                                       class="rounded-circle z-depth-0" alt="avatar image"
+                                                       style="width: 50px"></span>
+                                            <span>{{ post.author.get_full_name }}</span>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'site:single_group' pk=post.group.id %}">{{ post.group.title }}</a>
+                                    {% endif %}
+                                </div>
+                                <input class="post-id" type="text" value="{{ post.id }}" hidden>
+                                {% if post.text %}<p>{{ post.text }}</p>{% endif %}
+                                {% if post.attachment %}
+                                    <p><img src="/media/{{ post.attachment }}" style="width: 20%; height: 20%">
+                                    </p>{% endif %}
+                                <i>Created {{ post.created_at|naturaltime }}</i><br>
+                                <a class="like-button" {% if user in post.likes.all %} hidden {% endif %}>
+                                    <input class="post-like-type" type="text" value="{% if post.group %}group{% else %}user{% endif %}" hidden>
+                                    <input class="post-like-id" type="text" value="{{ post.id }}" hidden>
+                                    <span class="post-like-image"><img src="{% static 'img/like.png' %}" alt="like"
+                                                                       style="width: 3%; height: 3%"></span>
+                                    <span class="post-likes-count">{{ post.likes.all.count }}</span>
+                                </a>
+                                <a class="unlike-button" {% if user not in post.likes.all %} hidden {% endif %}>
+                                    <input class="post-unlike-type" type="text" value="{% if post.group %}group{% else %}user{% endif %}" hidden>
+                                    <input class="post-unlike-id" type="text" value="{{ post.id }}" hidden>
+                                    <span class="post-unlike-image"><img src="{% static 'img/liked.png' %}" alt="unlike"
+                                                                         style="width: 3%; height: 3%"></span>
+                                    <span class="post-likes-count">{{ post.likes.all.count }}</span>
+                                </a>
+                            </div>
+                            {% for comment in post.comments.all %}
+                                {# Post comment #}
+                                <div class="post-comment" style="margin-left: 80px; border-bottom: 1px solid black">
+                                    {# Comment author #}
+                                    <div style="display: inline">
+                                        <a href="{% url 'site:user_profile' id=comment.author.id %}">
+                                            <span><img src="/media/{{ comment.author.avatar }}"
+                                                       class="rounded-circle z-depth-0" alt="avatar image"
+                                                       style="width: 50px"></span>
+                                            <span>{{ comment.author.get_full_name }}</span>
+                                        </a> {{ comment.created_at|naturaltime}}
+                                    </div>
+                                    {# Delete comment #}
+                                    {% if comment.author == user %}
+                                        <div style="display: inline">
+                                            <input class="comment-delete-type" type="text" value="{% if comment.reply_on.group %}group{% else %}user{% endif %}" hidden>
+                                            {% if comment.reply_on.group %}
+                                                   <input class="comment-group-id" type="text" value="{{ comment.reply_on.group.id }}" hidden>
+                                            {% endif %}
+                                            <a class="delete-comment-button">
+                                                <input type="text" value="{{ comment.id }}" hidden>
+                                                <img src="{% static 'img/cross.png' %}" style="width: 2%; height: 2%">
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                    {% if comment.text %}<p>{{ comment.text }}</p>{% endif %}
+                                    {% if comment.attachment %}<p><img src="/media/{{ comment.attachment }}" style="width: 20%; height: 20%"></p>{% endif %}
+                                </div>
+                            {% empty %}
+                                <div style="margin-left: 80px; color: green">You'll be the first who comment this
+                                    post!
+                                </div>
+                            {% endfor %}
+                            {# Post comment form #}
+                            <form method="post" action="
+                                                    {% if post.group %}
+                                                        {% url 'site:comment_group_post' id=post.group.id %}
+                                                    {% else %}
+                                                        {% url 'site:comment_user_post' %}
+                                                    {% endif %}
+                                                    " enctype="multipart/form-data" style="margin-left: 80px">
+                                {% csrf_token %}
+                                {{ comment_form.as_p }}
+                                <input type="text" name="from" value="feed" hidden>
+                                <input type="text" name="post-id" value="{{ post.id }}" hidden>
+                                <input type="submit" value="Comment">
+                            </form>
+                            <hr>
+                        </div>
+                        {% if is_paginated %}
+                            <div>
+                                <span>
+                                    {% if page_obj.has_previous %}
+                                        <a href="{% url 'site:feed' %}?page={{ page_obj.previous_page_number }}">Previous</a>
+                                    {% endif %}
+                                    <span>
+                                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                    </span>
+                                    {% if page_obj.has_next %}
+                                        <a href="{% url 'site:feed' %}?page={{ page_obj.next_page_number }}">Next</a>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                        <div>There's nothing to show you</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+<script>
+    $('.like-button').click(function () {
+        let id = $(this).children('input.post-like-id').val();
+        let type = $(this).children('input.post-like-type').val();
+        $.ajax({
+            type: 'POST',
+            url: (type === 'group') ? '{% url 'site:group_post_like' %}' : '{% url 'site:post_like' %}',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            dataType: 'json',
+            data: {
+                'id': id,
+                'type': 'like'
+            },
+            success: function () {
+            },
+            error: function () {
+            }
+        });
+        let old_value = $(this).children('span.post-likes-count').text();
+        $(this).children('span.post-likes-count').text(Number(old_value) + 1);
+        $(this).parent().children('a.unlike-button').children('span.post-likes-count').text(Number(old_value) + 1);
+        $(this).parent().children('a.unlike-button').attr('hidden', false);
+        $(this).attr('hidden', true)
+    });
+    $('.unlike-button').click(function () {
+        let id = $(this).children('input.post-unlike-id').val();
+        let type = $(this).children('input.post-unlike-type').val();
+        $.ajax({
+            type: 'POST',
+            url: (type === 'group') ? '{% url 'site:group_post_like' %}' : '{% url 'site:post_like' %}',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            dataType: 'json',
+            data: {
+                'id': id,
+                'type': 'unlike'
+            },
+            success: function () {
+            },
+            error: function () {
+            }
+        });
+        let old_value = $(this).children('span.post-likes-count').text();
+        $(this).children('span.post-likes-count').text(Number(old_value) - 1);
+        $(this).parent().children('a.like-button').children('span.post-likes-count').text(Number(old_value) - 1);
+        $(this).parent().children('a.like-button').attr('hidden', false);
+        $(this).attr('hidden', true)
+    });
+    $('.delete-comment-button').click(function () {
+        let comment_id = $(this).children('input').val();
+        let type = $(this).parent('div').children('input.comment-delete-type').val();
+        $.ajax({
+            type: 'POST',
+            url: (type === 'group') ? '{% url 'site:delete_group_comment' %}' : '{% url 'site:delete_comment' %}',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            dataType: 'json',
+            data: {
+                'comment_id': comment_id
+            },
+            success: function () {
+            },
+            error: function () {
+            }
+        });
+        $(this).parent('div').parent('div').attr('hidden', true)
+    });
+</script>
+{% include 'parts/footer.html' %}

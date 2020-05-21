@@ -1,0 +1,42 @@
+{% include 'parts/header.html' %}
+{% include 'parts/navigation.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Groups that you are following on</h3>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="stmt">
+                        <input type="submit" value="Search">
+                    </form>
+                    <ul>
+                        {% for group in groups %}
+                            <li><a href="{% url 'site:single_group' pk=group.id %}">{{ group.title }}</a></li>
+                        {% empty %}
+                            <h6>No groups yet</h6>
+                        {% endfor %}
+                    </ul>
+                    <hr>
+                    <h3>Your own groups</h3>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="stmt1">
+                        <input type="submit" value="Search">
+                    </form>
+                    <ul>
+                        {% for group in own_groups %}
+                            <li><a href="{% url 'site:single_group' pk=group.id %}">{{ group.title }}</a></li>
+                        {% empty %}
+                            <h6>No groups yet</h6>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+{% include 'parts/footer.html' %}

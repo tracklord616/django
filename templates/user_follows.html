@@ -1,0 +1,31 @@
+{% include 'parts/header.html' %}
+{% include 'parts/navigation.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Users that you are following on</h3>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="stmt">
+                        <input type="submit" value="Search">
+                    </form>
+                    <ul style="list-style-type: none">
+                        {% for f in follows %}
+                            <li><a href="{% url 'site:user_profile' id=f.id %}">
+                                <span><img src="/media/{{ f.avatar }}" class="rounded-circle z-depth-0" style="width: 50px" alt="avatar"></span>
+                                <span>{{ f.get_full_name }}</span>
+                            </a></li>
+                        {% empty %}
+                            <h6>No follows yet</h6>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+{% include 'parts/footer.html' %}

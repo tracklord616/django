@@ -1,0 +1,184 @@
+{% load static %}
+{% load humanize %}
+{% include 'parts/header.html' %}
+{% include 'parts/navigation.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Profile</h3>
+                        <p><img src="/media/{{ user.avatar }}/" style="width: 192px" class="rounded-circle z-depth-0"></p>
+                        <p>Email: {{ user.email }}</p>
+                        <p>First name: {{ user.first_name }}</p>
+                        <p>Last name: {{ user.last_name }}</p>
+                        <p>Birthday: {{ user.date_of_birth|date:'j F Y' }}</p>
+                        <p>Gender: {{ user.gender|yesno:'Male,Female' }}</p>
+                        <p>Country: {{ user.country }}</p>
+                        <hr>
+                        <h3>Wall</h3>
+                        <form action="" method="post" enctype="multipart/form-data" style="border-bottom: 1px solid black">
+                            <label for="text">Tell us something...</label>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit" value="Create post">
+                        </form>
+                        {% for post in posts %}
+                            <div>
+                                <div class="post">
+                                    <div style="display: inline">
+                                        <a href="{% url 'site:user_profile' id=post.author.id %}">
+                                            <span><img src="/media/{{ post.author.avatar }}"
+                                                       class="rounded-circle z-depth-0" alt="avatar image"
+                                                       style="width: 50px"></span>
+                                            <span>{{ post.author.get_full_name }}</span>
+                                        </a>
+                                    </div>
+                                    <div style="display: inline">
+                                        <a class="delete-post-button">
+                                            <input type="text" value="{{ post.id }}" hidden>
+                                            <img src="{% static 'img/cross.png' %}" style="width: 2%; height: 2%">
+                                        </a>
+                                    </div>
+                                    <input class="post-id" type="text" value="{{ post.id }}" hidden>
+                                    {% if post.text %}<p>{{ post.text }}</p>{% endif %}
+                                    {% if post.attachment %}<p><img src="/media/{{ post.attachment }}" style="width: 20%; height: 20%"></p>{% endif %}
+                                    <i>Created {{ post.created_at|naturaltime }}</i><br>
+                                    <a class="like-button" {% if user in post.likes.all %} hidden {% endif %}>
+                                        <input class="post-like-id" type="text" value="{{ post.id }}" hidden>
+                                        <span class="post-like-image"><img src="{% static 'img/like.png' %}" alt="like" style="width: 3%; height: 3%"></span>
+                                        <span class="post-likes-count">{{ post.likes.all.count }}</span>
+                                    </a>
+                                    <a class="unlike-button" {% if user not in post.likes.all %} hidden {% endif %}>
+                                        <input class="post-unlike-id" type="text" value="{{ post.id }}" hidden>
+                                        <span class="post-unlike-image"><img src="{% static 'img/liked.png' %}" alt="unlike" style="width: 3%; height: 3%"></span>
+                                        <span class="post-likes-count">{{ post.likes.all.count }}</span>
+                                    </a>
+                                </div>
+                                {% for comment in post.comments.all %}
+                                    <div class="post-comment" style="margin-left: 80px; border-bottom: 1px solid black">
+                                        <div style="display: inline">
+                                            <a href="{% url 'site:user_profile' id=comment.author.id %}">
+                                                <span><img src="/media/{{ comment.author.avatar }}"
+                                                           class="rounded-circle z-depth-0" alt="avatar image"
+                                                           style="width: 50px"></span>
+                                                <span>{{ comment.author.get_full_name }}</span>
+                                            </a> {{ comment.created_at|naturaltime}}
+                                        </div>
+                                        {% if comment.author == user %}
+                                            <div style="display: inline">
+                                                <input class="comment-delete-type" type="text" value="{% if comment.reply_on.group %}group{% else %}user{% endif %}" hidden>
+                                                {% if comment.reply_on.group %}
+                                                       <input class="comment-group-id" type="text" value="{{ comment.reply_on.group.id }}" hidden>
+                                                {% endif %}
+                                                <a class="delete-comment-button">
+                                                    <input type="text" value="{{ comment.id }}" hidden>
+                                                    <img src="{% static 'img/cross.png' %}" style="width: 2%; height: 2%">
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                        {% if comment.text %}<p>{{ comment.text }}</p>{% endif %}
+                                        {% if comment.attachment %}<p><img src="/media/{{ comment.attachment }}" style="width: 20%; height: 20%"></p>{% endif %}
+                                    </div>
+                                {% empty %}
+                                    <div style="margin-left: 80px; color: green">You'll be the first who comment this post!</div>
+                                {% endfor %}
+                                <form method="post" action="{% url 'site:my_profile' %}" enctype="multipart/form-data" style="margin-left: 80px">
+                                    {% csrf_token %}
+                                    {{ comment_form.as_p }}
+                                    <input type="text" name="post-id" value="{{ post.id }}" hidden>
+                                    <input type="submit" value="Comment">
+                                </form>
+                                <hr>
+                            </div>
+                        {% empty %}
+                            <div>No posts yet</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+    <script>
+        $('.like-button').click(function () {
+            let id = $(this).children('input.post-like-id').val();
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'site:post_like' %}',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                dataType: 'json',
+                data: {
+                    'id': id,
+                    'type': 'like'
+                },
+                success: function(){
+                },
+                error: function () {
+                }
+            });
+            let old_value = $(this).children('span.post-likes-count').text();
+            $(this).children('span.post-likes-count').text(Number(old_value) + 1);
+            $(this).parent().children('a.unlike-button').children('span.post-likes-count').text(Number(old_value) + 1);
+            $(this).parent().children('a.unlike-button').attr('hidden', false);
+            $(this).attr('hidden', true)
+        });
+        $('.unlike-button').click(function () {
+            let id = $(this).children('input.post-unlike-id').val();
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'site:post_like' %}',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                dataType: 'json',
+                data: {
+                    'id': id,
+                    'type': 'unlike'
+                },
+                success: function(){
+                },
+                error: function () {
+                }
+            });
+            let old_value = $(this).children('span.post-likes-count').text();
+            $(this).children('span.post-likes-count').text(Number(old_value) - 1);
+            $(this).parent().children('a.like-button').children('span.post-likes-count').text(Number(old_value) - 1);
+            $(this).parent().children('a.like-button').attr('hidden', false);
+            $(this).attr('hidden', true)
+        });
+        $('.delete-post-button').click(function () {
+            let post_id = $(this).children('input').val();
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'site:delete_post' %}',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                dataType: 'json',
+                data: {
+                    'post_id': post_id
+                },
+                success: function(){
+                },
+                error: function () {
+                }
+            });
+            $(this).parent('div').parent('div').parent('div').attr('hidden', true)
+        });
+        $('.delete-comment-button').click(function () {
+        let comment_id = $(this).children('input').val();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'site:delete_comment' %}',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            dataType: 'json',
+            data: {
+                'comment_id': comment_id
+            },
+            success: function () {
+            },
+            error: function () {
+            }
+        });
+        $(this).parent('div').parent('div').attr('hidden', true)
+    });
+    </script>
+{% include 'parts/footer.html' %}

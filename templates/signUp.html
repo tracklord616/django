@@ -1,0 +1,30 @@
+{% include 'parts/header.html' %}
+{% include 'parts/navigation.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Registration</h3>
+                    <hr>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Sign Up">
+                    </form>
+                    {% if errors %}
+                        {% for error in errors %}
+                            <p style="color: red;">
+                                Incorrect {{ error }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+
+{% include 'parts/footer.html' %}

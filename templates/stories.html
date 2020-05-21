@@ -1,0 +1,44 @@
+{% load humanize %}
+{% load static %}
+{% include 'parts/header.html' %}
+{% include 'parts/navigation.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-12">
+                    <div class="create-story-link" style="margin-bottom: 25px; margin-top: 25px">
+                        <a href="{% url 'site:create_story' %}">Post your own story!</a>
+                    </div>
+                    {% for story in object_list %}
+                        <div class="story" style="margin: 5px">
+                            <div class="author" style="margin: 5px">
+                                <a href="{% url 'site:user_profile' id=story.author.id %}">
+                                    <span><img src="/media/{{ story.author.avatar }}" class="rounded-circle z-depth-0" alt="avatar image" style="width: 50px"></span>
+                                    <span>{{ story.author.get_full_name }}</span>
+                                </a>
+                            </div>
+                            <div class="attachment" style="margin: 5px">
+                                <img src="/media/{{ story.file }}" style="width: 380px" alt="story">
+                            </div>
+                            <div class="created_at" style="margin: 5px">
+                                <span>Posted {{ story.created_at|naturaltime }}</span>
+                                <span style="float: right">
+                                    <span>{{ story.views_count }}</span>
+                                    <span><img src="{% static 'img/eye.png' %}" style="width: 5%"></span>
+                                </span>
+                                <hr>
+                            </div>
+                        </div>
+                        <hr>
+                    {% empty %}
+                        <h3>No stories yet</h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+{% include 'parts/footer.html' %}

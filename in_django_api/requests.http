@@ -1,0 +1,53 @@
+POST localhost:8000/indjango/api/token/
+Content-Type: application/json
+
+{
+  "email" : "kevlinsky@outlook.com",
+  "password": "qwerty007"
+}
+
+###
+
+POST localhost:8000/indjango/api/token/refresh/
+Content-Type: application/json
+
+{
+  "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MDA4NTc4NiwianRpIjoiZmMwYzM4NDEwMTNmNGQxZTliZTRhNDVmZjA4NTBlNDIiLCJ1c2VyX2lkIjoxfQ.g3sCO0ALsQI0y7ma9NjFYHU80dej85fLWsKjj0r1U-I"
+}
+
+###
+
+GET localhost:8000/indjango/api/users/1/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkwMDEwNzMyLCJqdGkiOiJlMDEyYmFlMWI2ZTQ0NDU1YTAxMWJkZTBhMDUyNGE1MCIsInVzZXJfaWQiOjF9.PJF4-9svbYJj5eL513guEw1KqQuvKpoHcDHyBlcr9VI
+
+###
+
+POST localhost:8000/indjango/api/users/create/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkwMDEwOTMxLCJqdGkiOiJhMjA1Zjk4NzNhZmQ0N2U4OTNjYmZjYjcxZGQ0MTk2YyIsInVzZXJfaWQiOjF9.EP3hRHNric1eHWCciJSvhynHzl897icYU6SKSbKaPDE
+
+{
+   "email": "srr1772@mail.ru",
+   "password": "SRr729038",
+   "first_name": "Roman",
+   "last_name": "Syunyakov",
+   "gender": true,
+   "date_of_birth": "2000-09-26",
+   "country": "Russia",
+   "rules_accept": true
+}
+
+###
+
+DELETE localhost:8000/indjango/api/users/4/delete/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkwMDEwNzMyLCJqdGkiOiJlMDEyYmFlMWI2ZTQ0NDU1YTAxMWJkZTBhMDUyNGE1MCIsInVzZXJfaWQiOjF9.PJF4-9svbYJj5eL513guEw1KqQuvKpoHcDHyBlcr9VI
+
+###
+
+PATCH localhost:8000/indjango/api/users/2/update/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkwMDA1MzUzLCJqdGkiOiJkNDJkMjFkZWNlMzc0Yzk2ODdjY2M0Zjk3YTMyMWNjZSIsInVzZXJfaWQiOjF9.uQfVSaYnExgPAAtUUKceeQGiqDN8BON4yqrpi33I9LY
+
+{
+   "email": "kingstertime3@gmail.com"
+}
+
+###
