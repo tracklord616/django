@@ -23,6 +23,29 @@ class InDjangoUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def create_staffuser(self, email, password, first_name=None,
+                         last_name=None, gender=None, date_of_birth=None,
+                         country=None, rules_accept=None):
+        if not email:
+            raise ValueError("Email is required")
+        if not password:
+            raise ValueError("Password is required")
+        user = self.create_user(
+            email=self.normalize_email(email),
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+            gender=gender,
+            date_of_birth=date_of_birth,
+            country=country,
+            rules_accept=rules_accept
+        )
+        user.is_admin = True
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
+
     def create_superuser(self, email, password, first_name=None,
                          last_name=None, gender=None, date_of_birth=None,
                          country=None, rules_accept=None):
@@ -64,7 +87,7 @@ class InDjangoUser(AbstractBaseUser):
     avatar = models.FileField(upload_to='avatars', default='avatars/anon.png', blank=True)
     follows = models.ManyToManyField('InDjangoUser', related_name='followers', null=True, blank=True)
 
-    objects = BaseUserManager()
+    objects = InDjangoUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'gender', 'date_of_birth', 'country', 'rules_accept']
