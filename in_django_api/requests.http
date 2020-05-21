@@ -1,28 +1,28 @@
-POST localhost:8000/indjango/api/token/
+POST in-django.herokuapp.com/indjango/api/token/
 Content-Type: application/json
 
 {
   "email" : "kevlinsky@outlook.com",
-  "password": "qwerty007"
+  "password": "Ihaveanissue123"
 }
 
 ###
 
-POST localhost:8000/indjango/api/token/refresh/
+POST in-django.herokuapp.com/indjango/api/token/refresh/
 Content-Type: application/json
 
 {
-  "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MDA4NTc4NiwianRpIjoiZmMwYzM4NDEwMTNmNGQxZTliZTRhNDVmZjA4NTBlNDIiLCJ1c2VyX2lkIjoxfQ.g3sCO0ALsQI0y7ma9NjFYHU80dej85fLWsKjj0r1U-I"
+  "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MDE1MzQwMiwianRpIjoiYzM1NzBjNWRjMWI3NGE2YTkyNmM1ZWU5YzY3N2FiZWIiLCJ1c2VyX2lkIjoxfQ.1MZE5CADkPxP4ADAEh7uNBQipOp1zK3Ue-NEKzK95YM"
 }
 
 ###
 
-GET localhost:8000/indjango/api/users/1/
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkwMDEwNzMyLCJqdGkiOiJlMDEyYmFlMWI2ZTQ0NDU1YTAxMWJkZTBhMDUyNGE1MCIsInVzZXJfaWQiOjF9.PJF4-9svbYJj5eL513guEw1KqQuvKpoHcDHyBlcr9VI
+GET in-django.herokuapp.com/indjango/api/users/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkwMTUzNDAyLCJqdGkiOiI5N2FlZTZiYmJlMmY0M2RmOTE1ZWYzYzZhMTBkNjgzNiIsInVzZXJfaWQiOjF9.xHqdLn1cDFufQTz3ikYdDs9SFRRNe1VlZxYb1b0cxSQ
 
 ###
 
-POST localhost:8000/indjango/api/users/create/
+POST in-django.herokuapp.com/indjango/api/users/create/
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkwMDEwOTMxLCJqdGkiOiJhMjA1Zjk4NzNhZmQ0N2U4OTNjYmZjYjcxZGQ0MTk2YyIsInVzZXJfaWQiOjF9.EP3hRHNric1eHWCciJSvhynHzl897icYU6SKSbKaPDE
 
 {
@@ -38,12 +38,12 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ###
 
-DELETE localhost:8000/indjango/api/users/4/delete/
+DELETE in-django.herokuapp.com/indjango/api/users/4/delete/
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkwMDEwNzMyLCJqdGkiOiJlMDEyYmFlMWI2ZTQ0NDU1YTAxMWJkZTBhMDUyNGE1MCIsInVzZXJfaWQiOjF9.PJF4-9svbYJj5eL513guEw1KqQuvKpoHcDHyBlcr9VI
 
 ###
 
-PATCH localhost:8000/indjango/api/users/2/update/
+PATCH in-django.herokuapp.com/indjango/api/users/2/update/
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkwMDA1MzUzLCJqdGkiOiJkNDJkMjFkZWNlMzc0Yzk2ODdjY2M0Zjk3YTMyMWNjZSIsInVzZXJfaWQiOjF9.uQfVSaYnExgPAAtUUKceeQGiqDN8BON4yqrpi33I9LY
 
 {
