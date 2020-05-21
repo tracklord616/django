@@ -2,28 +2,28 @@
 
 /*!
  * Material Design for Bootstrap 4
- * Version: MDB FREE 4.9.0
+ *   Version: MDB FREE 4.18.0
  * 
  * 
- * Copyright: Material Design for Bootstrap
- * https://mdbootstrap.com/
+ *   Copyright: Material Design for Bootstrap
+ *   https://mdbootstrap.com/
  * 
- * Read the license: https://mdbootstrap.com/general/license/
+ *   Read the license: https://mdbootstrap.com/general/license/
  * 
  * 
- * Documentation: https://mdbootstrap.com/
+ *   Documentation: https://mdbootstrap.com/
  * 
- * Getting started: https://mdbootstrap.com/docs/jquery/getting-started/download/
+ *   Getting started: https://mdbootstrap.com/docs/jquery/getting-started/download/
  * 
- * Tutorials: https://mdbootstrap.com/education/bootstrap/
+ *   Tutorials: https://mdbootstrap.com/education/bootstrap/
  * 
- * Templates: https://mdbootstrap.com/templates/
+ *   Templates: https://mdbootstrap.com/templates/
  * 
- * Support: https://mdbootstrap.com/support/
+ *   Support: https://mdbootstrap.com/support/
  * 
- * Contact: office@mdbootstrap.com
+ *   Contact: office@mdbootstrap.com
  * 
- * Attribution: Animate CSS, Twitter Bootstrap, Materialize CSS, Normalize CSS, Waves JS, WOW JS, Toastr, Chart.js
+ *   Attribution: Animate CSS, Twitter Bootstrap, Materialize CSS, Normalize CSS, Waves JS, WOW JS, Toastr, Chart.js
  */
 .mdb-color.lighten-5 {
     background-color: #d0d6e2 !important
@@ -2002,41 +2002,6 @@ button.bg-light:focus {
     flex: 1
 }
 
-@font-face {
-    font-family: Roboto;
-    font-weight: 200;
-    src: local(Roboto Thin), url(../font/roboto/Roboto-Thin.eot);
-    src: url(../font/roboto/Roboto-Thin.eot?#iefix) format("embedded-opentype"), url(../font/roboto/Roboto-Thin.woff2) format("woff2"), url(../font/roboto/Roboto-Thin.woff) format("woff"), url(../font/roboto/Roboto-Thin.ttf) format("truetype")
-}
-
-@font-face {
-    font-family: Roboto;
-    font-weight: 300;
-    src: local(Roboto Light), url(../font/roboto/Roboto-Light.eot);
-    src: url(../font/roboto/Roboto-Light.eot?#iefix) format("embedded-opentype"), url(../font/roboto/Roboto-Light.woff2) format("woff2"), url(../font/roboto/Roboto-Light.woff) format("woff"), url(../font/roboto/Roboto-Light.ttf) format("truetype")
-}
-
-@font-face {
-    font-family: Roboto;
-    font-weight: 400;
-    src: local(Roboto Regular), url(../font/roboto/Roboto-Regular.eot);
-    src: url(../font/roboto/Roboto-Regular.eot?#iefix) format("embedded-opentype"), url(../font/roboto/Roboto-Regular.woff2) format("woff2"), url(../font/roboto/Roboto-Regular.woff) format("woff"), url(../font/roboto/Roboto-Regular.ttf) format("truetype")
-}
-
-@font-face {
-    font-family: Roboto;
-    font-weight: 500;
-    src: url(../font/roboto/Roboto-Medium.eot);
-    src: url(../font/roboto/Roboto-Medium.eot?#iefix) format("embedded-opentype"), url(../font/roboto/Roboto-Medium.woff2) format("woff2"), url(../font/roboto/Roboto-Medium.woff) format("woff"), url(../font/roboto/Roboto-Medium.ttf) format("truetype")
-}
-
-@font-face {
-    font-family: Roboto;
-    font-weight: 700;
-    src: url(../font/roboto/Roboto-Bold.eot);
-    src: url(../font/roboto/Roboto-Bold.eot?#iefix) format("embedded-opentype"), url(../font/roboto/Roboto-Bold.woff2) format("woff2"), url(../font/roboto/Roboto-Bold.woff) format("woff"), url(../font/roboto/Roboto-Bold.ttf) format("truetype")
-}
-
 body {
     font-family: "Roboto", sans-serif;
     font-weight: 300
@@ -2303,6 +2268,10 @@ a.text-light:focus {
 
 .font-small {
     font-size: .9rem
+}
+
+strong {
+    font-weight: 500
 }
 
 .view {
@@ -3529,8 +3498,8 @@ a.waves-light {
     }
 
     77.7% {
-        -webkit-transform: skewX(0.39063deg) skewY(0.39063deg);
-        transform: skewX(0.39063deg) skewY(0.39063deg)
+        -webkit-transform: skewX(0.39062deg) skewY(0.39062deg);
+        transform: skewX(0.39062deg) skewY(0.39062deg)
     }
 
     88.8% {
@@ -3574,8 +3543,8 @@ a.waves-light {
     }
 
     77.7% {
-        -webkit-transform: skewX(0.39063deg) skewY(0.39063deg);
-        transform: skewX(0.39063deg) skewY(0.39063deg)
+        -webkit-transform: skewX(0.39062deg) skewY(0.39062deg);
+        transform: skewX(0.39062deg) skewY(0.39062deg)
     }
 
     88.8% {
@@ -9636,6 +9605,7 @@ table.table a.btn.btn-black {
     background: linear-gradient(#5ed1fc, #3647b3)
 }
 
+.btn-warning:focus,
 .btn-warning:not(:disabled):not(.disabled).active,
 .btn-warning:not(:disabled):not(.disabled):active,
 .show>.btn-warning.dropdown-toggle {
@@ -9686,6 +9656,22 @@ table.table a.btn.btn-black {
 
 .dropdown .dropdown-menu .dropdown-item:active {
     background-color: #757575
+}
+
+.dropdown-submenu {
+    position: relative
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: 1px;
+    border-radius: 0 6px 6px 6px
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block
 }
 
 .md-form.input-group label {
@@ -10168,6 +10154,14 @@ table.table a.btn.btn-black {
 body.modal-open {
     padding-right: 0 !important;
     overflow: auto
+}
+
+body.modal-open .fixed-top {
+    padding-right: 1rem !important
+}
+
+body.modal-open .fixed-bottom {
+    padding-right: 0 !important
 }
 
 body.scrollable {
@@ -10681,6 +10675,7 @@ body.scrollable {
 .md-form input[type="tel"]:not(.browser-default),
 .md-form input[type="number"]:not(.browser-default),
 .md-form input[type="search"]:not(.browser-default),
+.md-form input[type="phone"]:not(.browser-default),
 .md-form input[type="search-md"],
 .md-form textarea.md-textarea {
     -webkit-box-sizing: content-box;
@@ -10710,6 +10705,7 @@ body.scrollable {
 .md-form input[type="tel"]:not(.browser-default):focus:not([readonly]),
 .md-form input[type="number"]:not(.browser-default):focus:not([readonly]),
 .md-form input[type="search"]:not(.browser-default):focus:not([readonly]),
+.md-form input[type="phone"]:not(.browser-default):focus:not([readonly]),
 .md-form input[type="search-md"]:focus:not([readonly]),
 .md-form textarea.md-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #4285f4;
@@ -10729,6 +10725,7 @@ body.scrollable {
 .md-form input[type="tel"]:not(.browser-default):focus:not([readonly])+label,
 .md-form input[type="number"]:not(.browser-default):focus:not([readonly])+label,
 .md-form input[type="search"]:not(.browser-default):focus:not([readonly])+label,
+.md-form input[type="phone"]:not(.browser-default):focus:not([readonly])+label,
 .md-form input[type="search-md"]:focus:not([readonly])+label,
 .md-form textarea.md-textarea:focus:not([readonly])+label {
     color: #4285f4
@@ -10746,6 +10743,7 @@ body.scrollable {
 .md-form input[type="tel"]:not(.browser-default)+label::after,
 .md-form input[type="number"]:not(.browser-default)+label::after,
 .md-form input[type="search"]:not(.browser-default)+label::after,
+.md-form input[type="phone"]:not(.browser-default)+label::after,
 .md-form input[type="search-md"]+label::after,
 .md-form textarea.md-textarea+label::after {
     position: absolute;
@@ -10781,6 +10779,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default):focus.valid,
 .md-form input[type="search"]:not(.browser-default).valid,
 .md-form input[type="search"]:not(.browser-default):focus.valid,
+.md-form input[type="phone"]:not(.browser-default).valid,
+.md-form input[type="phone"]:not(.browser-default):focus.valid,
 .md-form input[type="search-md"].valid,
 .md-form input[type="search-md"]:focus.valid,
 .md-form textarea.md-textarea.valid,
@@ -10814,6 +10814,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default):focus.valid+label:after,
 .md-form input[type="search"]:not(.browser-default).valid+label:after,
 .md-form input[type="search"]:not(.browser-default):focus.valid+label:after,
+.md-form input[type="phone"]:not(.browser-default).valid+label:after,
+.md-form input[type="phone"]:not(.browser-default):focus.valid+label:after,
 .md-form input[type="search-md"].valid+label:after,
 .md-form input[type="search-md"]:focus.valid+label:after,
 .md-form textarea.md-textarea.valid+label:after,
@@ -10847,6 +10849,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default):focus.invalid,
 .md-form input[type="search"]:not(.browser-default).invalid,
 .md-form input[type="search"]:not(.browser-default):focus.invalid,
+.md-form input[type="phone"]:not(.browser-default).invalid,
+.md-form input[type="phone"]:not(.browser-default):focus.invalid,
 .md-form input[type="search-md"].invalid,
 .md-form input[type="search-md"]:focus.invalid,
 .md-form textarea.md-textarea.invalid,
@@ -10880,6 +10884,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default):focus.invalid+label:after,
 .md-form input[type="search"]:not(.browser-default).invalid+label:after,
 .md-form input[type="search"]:not(.browser-default):focus.invalid+label:after,
+.md-form input[type="phone"]:not(.browser-default).invalid+label:after,
+.md-form input[type="phone"]:not(.browser-default):focus.invalid+label:after,
 .md-form input[type="search-md"].invalid+label:after,
 .md-form input[type="search-md"]:focus.invalid+label:after,
 .md-form textarea.md-textarea.invalid+label:after,
@@ -10913,6 +10919,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default).form-control:focus.valid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control.valid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control:focus.valid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control.valid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control:focus.valid+label:after,
 .md-form input[type="search-md"].form-control.valid+label:after,
 .md-form input[type="search-md"].form-control:focus.valid+label:after,
 .md-form textarea.md-textarea.form-control.valid+label:after,
@@ -10944,6 +10952,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default).form-control:focus.invalid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control.invalid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control:focus.invalid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control.invalid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control:focus.invalid+label:after,
 .md-form input[type="search-md"].form-control.invalid+label:after,
 .md-form input[type="search-md"].form-control:focus.invalid+label:after,
 .md-form textarea.md-textarea.form-control.invalid+label:after,
@@ -10975,6 +10985,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default).form-control-lg:focus.valid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control-lg.valid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control-lg:focus.valid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control-lg.valid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control-lg:focus.valid+label:after,
 .md-form input[type="search-md"].form-control-lg.valid+label:after,
 .md-form input[type="search-md"].form-control-lg:focus.valid+label:after,
 .md-form textarea.md-textarea.form-control-lg.valid+label:after,
@@ -11006,6 +11018,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default).form-control-lg:focus.invalid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control-lg.invalid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control-lg:focus.invalid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control-lg.invalid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control-lg:focus.invalid+label:after,
 .md-form input[type="search-md"].form-control-lg.invalid+label:after,
 .md-form input[type="search-md"].form-control-lg:focus.invalid+label:after,
 .md-form textarea.md-textarea.form-control-lg.invalid+label:after,
@@ -11037,6 +11051,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default).form-control-sm:focus.valid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control-sm.valid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control-sm:focus.valid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control-sm.valid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control-sm:focus.valid+label:after,
 .md-form input[type="search-md"].form-control-sm.valid+label:after,
 .md-form input[type="search-md"].form-control-sm:focus.valid+label:after,
 .md-form textarea.md-textarea.form-control-sm.valid+label:after,
@@ -11068,6 +11084,8 @@ body.scrollable {
 .md-form input[type="number"]:not(.browser-default).form-control-sm:focus.invalid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control-sm.invalid+label:after,
 .md-form input[type="search"]:not(.browser-default).form-control-sm:focus.invalid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control-sm.invalid+label:after,
+.md-form input[type="phone"]:not(.browser-default).form-control-sm:focus.invalid+label:after,
 .md-form input[type="search-md"].form-control-sm.invalid+label:after,
 .md-form input[type="search-md"].form-control-sm:focus.invalid+label:after,
 .md-form textarea.md-textarea.form-control-sm.invalid+label:after,
@@ -11287,13 +11305,21 @@ body.scrollable {
 }
 
 .md-form textarea.md-textarea {
-    padding: 1.5rem 0;
+    padding: 0;
     overflow-y: hidden
+}
+
+.md-form textarea.md-textarea+label {
+    top: -0.6rem
 }
 
 .md-form textarea.md-textarea-auto {
     padding: 0;
     padding-top: 1.5rem
+}
+
+.md-form textarea.md-textarea-auto+label {
+    top: 0
 }
 
 .md-form.md-outline {
@@ -11892,7 +11918,72 @@ body.scrollable {
 }
 
 .custom-file-input:lang(ru)~.custom-file-label::after {
-    content: "выбирать"
+    content: "Выбрать"
+}
+
+.md-form>label {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.md-form .form-control {
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important
+}
+
+.md-form .input-prefix {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+    color: rgba(0, 0, 0, 0.87);
+    pointer-events: none
+}
+
+.md-form .input-prefix.active {
+    color: #4285f4
+}
+
+.md-form.input-with-pre-icon label {
+    left: 36px;
+    right: initial
+}
+
+.md-form.input-with-pre-icon .input-prefix {
+    left: 16px;
+    right: initial
+}
+
+.md-form.input-with-pre-icon .form-control {
+    padding-left: 2.7rem !important
+}
+
+.md-form.input-with-post-icon .input-prefix {
+    right: 16px;
+    left: initial
+}
+
+.md-form.input-with-post-icon .form-control {
+    padding-right: 2.7rem !important
+}
+
+.md-form.input-with-post-icon.input-with-pre-icon .input-prefix {
+    right: 16px;
+    left: initial
+}
+
+.md-form.input-with-post-icon.input-with-pre-icon .input-prefix:first-of-type {
+    left: 16px;
+    right: initial
+}
+
+.md-form.input-with-post-icon.input-with-pre-icon .form-control {
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important
 }
 
 .edge-header {
@@ -12645,3 +12736,6 @@ ul.stepper li.completed a .label {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg)
 }
+
+
+/*# sourceMappingURL=mdb.min.css.map*/
