@@ -205,7 +205,7 @@
 
   /**
    * Collection of wrapper for HTML element that only have single tag
-   * like <input> and <img>
+   * like <input> and <own_img>
    */
   var TagWrapper = {
 
@@ -230,7 +230,7 @@
 
     },
 
-    // Wrap <img> tag so it can perform the effect
+    // Wrap <own_img> tag so it can perform the effect
     img: function (element) {
 
       var parent = element.parentNode;

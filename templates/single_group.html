@@ -42,7 +42,7 @@
                                         <div>
                                             <a class="delete-post-button">
                                                 <input type="text" value="{{ post.id }}" hidden>
-                                                <img src="{% static 'img/cross.png' %}" style="width: 2%; height: 2%">
+                                                <img src="{% static 'own_img/cross.png' %}" style="width: 2%; height: 2%">
                                             </a>
                                         </div>
                                     {% endif %}
@@ -52,12 +52,12 @@
                                     <i>Created {{ post.created_at|naturaltime }}</i><br>
                                     <a class="like-button" {% if user in post.likes.all %} hidden {% endif %}>
                                         <input class="post-like-id" type="text" value="{{ post.id }}" hidden>
-                                        <span class="post-like-image"><img src="{% static 'img/like.png' %}" alt="like" style="width: 3%; height: 3%"></span>
+                                        <span class="post-like-image"><img src="{% static 'own_img/like.png' %}" alt="like" style="width: 3%; height: 3%"></span>
                                         <span class="post-likes-count">{{ post.likes.all.count }}</span>
                                     </a>
                                     <a class="unlike-button" {% if user not in post.likes.all %} hidden {% endif %}>
                                        <input class="post-unlike-id" type="text" value="{{ post.id }}" hidden>
-                                        <span class="post-unlike-image"><img src="{% static 'img/liked.png' %}" alt="unlike" style="width: 3%; height: 3%"></span>
+                                        <span class="post-unlike-image"><img src="{% static 'own_img/liked.png' %}" alt="unlike" style="width: 3%; height: 3%"></span>
                                         <span class="post-likes-count">{{ post.likes.all.count }}</span>
                                     </a>
                                 </div>
